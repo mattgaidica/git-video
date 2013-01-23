@@ -17,6 +17,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def repo repo_url
+    response = HTTParty.get "#{repo_url}?access_token=#{self.token}"
+    if response.code == 200
+      return JSON.parse(response.body)
+    end
+  end
+
   def commits repo_url
     response = HTTParty.get "#{repo_url}/commits?access_token=#{self.token}"
     if response.code == 200
@@ -24,9 +31,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  #private
-
-    def github_api ext=''
-      "https://api.github.com/user#{ext}?access_token=#{self.token}"
+  #/repos/:owner/:repo/commits/:sha
+  def commit repo_url, sha
+    self.commits(repo_url).each do |commit|
+      return commit if commit['commit']['tree']['sha'] == sha
     end
+  end
 end

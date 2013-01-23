@@ -4,8 +4,11 @@ GitVideo::Application.routes.draw do
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
   match "/login" => "pages#login", :as => :login
-  match "/save/:sha" => "pages#save"
+  match "/save/:sha/:user/:repo" => "pages#save" #comes from nimbb
   match "/remove/:sha" => "pages#remove", :as => :remove
+  match "/repos" => "pages#repos"
+  match "/repo" => "pages#repo"
+  match "/commit/:sha" => "pages#commit"
   
   root :to => 'pages#index'
   # The priority is based upon order of creation:
