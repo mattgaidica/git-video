@@ -8,6 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Stalemate' rel='stylesheet' type='text/css'>
+
     <!-- Le styles -->
     <%= stylesheet_link_tag "bootstrap" %>
     <style type="text/css">
@@ -49,6 +52,21 @@
       .muted {
         color: #999999;
       }
+      .hand {
+        font-family: 'Indie Flower', cursive;
+        font-size:16px;
+        color: #009900;
+      }
+      .table th,
+      .table td {
+        vertical-align: middle; 
+      }
+      .logo {
+        font-family: 'Stalemate', cursive;
+        text-decoration:none;
+        text-shadow: 1px 1px #0066aa;
+        font-size:56px;
+      }
     </style>
     <%= stylesheet_link_tag "bootstrap-responsive" %>
 
@@ -65,12 +83,11 @@
       <% if current_user %>
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Repos</a></li>
-          <li><a href="#">Commits</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/repos">Repos</a></li>
           <li><%= link_to "Sign Out", signout_path %><li>
         </ul>
-        <h3 class="muted">Git Video</h3>
+        <h3 class="muted"><a class="logo" href="/">Git Video</a></h3>
       </div>
 
       <hr>

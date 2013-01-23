@@ -1,4 +1,7 @@
 GitVideo::Application.configure do
+  ENV['GITHUB_KEY'] = "81f4d72f6d00bc3d6e80"
+  ENV['GITHUB_SECRET'] = "8ee05bb509072981f27e13b3373acf05b64d98f9"
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -15,7 +18,7 @@ GitVideo::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
