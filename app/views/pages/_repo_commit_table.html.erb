@@ -1,0 +1,29 @@
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-striped">
+      <caption>Commits for <a href="/repo?url=<%= repo['url'] %>"><%= repo['name'] %></a></caption>
+      <thead>
+        <tr>
+          <th>Committer</th>
+          <th>Message</th>
+          <th>Date</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% commits.each_with_index do |commit, i| %>
+          <% break if i == (show) %>
+          <% sha = commit['commit']['tree']['sha'] %>
+          <tr>
+            <td><%= commit['commit']['committer']['name'] %></td>
+            <td class="hand"><%= commit['commit']['message'] %></td>
+            <td><%= DateTime.strptime(commit['commit']['committer']['date'], '%Y-%m-%dT%H:%M:%S%z').in_time_zone("Eastern Time (US & Canada)").strftime("%b %d at %I:%M%p") %></td>
+            <td><% if !Video.where(commit_sha: sha).empty? %><i class="icon-facetime-video"></i><% end %></td>
+            <td><a href="/commit/<%= sha %>?url=<%= repo['url'] %>" class="btn">View</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

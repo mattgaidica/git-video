@@ -1,0 +1,2 @@
+<p><small>&laquo; back to <a href="/repo?url=<%= @repo['url'] %>"><%= @repo['name'] %></a></small></p>
+<%= render :partial => "single_commit", :locals => { commit: @commit, repo: @repo } %>
