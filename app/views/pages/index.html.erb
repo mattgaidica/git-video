@@ -1,0 +1,35 @@
+<div class="jumbotron">
+  <!--<h1>Latest Commit</h1>-->
+  <% repo = @user.repos.first %>
+  <% commit = @user.commits(repo['url']).first['commit'] %>
+  <% sha = commit['tree']['sha'] %>
+  <p class="lead"><%= commit['committer']['name'] %> commited to <u><%= repo['name'] %></u> on <%= DateTime.strptime(repo['pushed_at'], '%Y-%m-%dT%H:%M:%S%z').in_time_zone("Eastern Time (US & Canada)").strftime("%b %d at %I:%M%p") %>.</p>
+  <p>"<%= commit['message'] %>"</p>
+
+
+  <br>
+  <% videos = Video.where(commit_sha: sha) %>
+  <% if !videos.empty? %>
+    <div style="width:320px;height:240px;margin:0 auto;" class="img-polaroid">
+      <object id="nimbb" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="320" height="240" codebase= "http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab"> 
+        <param name="movie" value="http://player.nimbb.com/nimbb.swf?guid=<%= videos.first.nimbb_guid %>&lang=en" /> 
+        <param name="allowScriptAccess" value="always" /> 
+        <embed name="nimbb" src="http://player.nimbb.com/nimbb.swf?guid=<%= videos.first.nimbb_guid %>&lang=en" width="320" height="240" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash"> 
+        </embed> 
+      </object>
+    </div>
+    <br>
+    <p><a style="padding: 4px 12px;font-size: 14px;"href="/remove/<%= sha %>" class="btn btn-danger"><i class="icon-repeat icon-white"></i> Redo</a></p>
+
+  <% else %>
+    <div style="width:320px;height:240px;margin:0 auto;" class="img-polaroid">
+      <object id="nimbb" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="320" height="240" codebase= "http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+        <param name="movie" value="http://player.nimbb.com/nimbb.swf?mode=record&redirecturl=/save/<%= sha %>&key=13f095de30&lang=en" />
+        <param name="allowScriptAccess" value="always" />
+        <embed name="nimbb" src="http://player.nimbb.com/nimbb.swf?mode=record&redirecturl=/save/<%= sha %>&key=13f095de30&lang=en" width="320" height="240" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash"></embed>
+      </object>
+    </div>
+    <br>
+    <p><small>Press "Save" when done.</small></p>
+  <% end %>
+</div>

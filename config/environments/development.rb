@@ -1,4 +1,6 @@
 GitVideo::Application.configure do
+  ENV['GITHUB_KEY'] = "bd4e49c390bae3e1d441"
+  ENV['GITHUB_SECRET'] = "f1c15046c7918bd3350fbcf7f1172e0fa46ab0db"
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on

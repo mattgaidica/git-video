@@ -1,4 +1,13 @@
 GitVideo::Application.routes.draw do
+  get "pages/index"
+
+  match "/auth/:provider/callback" => "sessions#create"
+  match "/signout" => "sessions#destroy", :as => :signout
+  match "/login" => "pages#login", :as => :login
+  match "/save/:sha" => "pages#save"
+  match "/remove/:sha" => "pages#remove", :as => :remove
+  
+  root :to => 'pages#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
