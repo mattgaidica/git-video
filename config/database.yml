@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: git-video_development
   pool: 5
-  username: git-video
+  username: matt
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
