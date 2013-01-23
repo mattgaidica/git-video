@@ -1,0 +1,7 @@
+<p><small>&laquo; back to <a href="/repos">all repos</a></small></p>
+
+<%= render :partial => "single_commit", :locals => { commit: @commits.first, repo: @repo } %>
+
+<% show = 15 %>
+<%= render :partial => "repo_commit_table", :locals => { repo: @repo, commits: @commits, show: show } %>
+<p><small>showing the last <%= show %> commits</small></p>
