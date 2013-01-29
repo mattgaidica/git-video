@@ -9,6 +9,7 @@ gem 'pg'
 gem 'omniauth-github'
 gem 'httparty'
 gem 'json'
+gem 'newrelic_rpm'
 
 # Gems used only for assets and not required
 # in production environments by default.
